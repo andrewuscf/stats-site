@@ -1,0 +1,9 @@
+logs
+*.log
+npm-debug.log*
+pids
+*.pid
+*.seed
+.idea
+build/Release
+node_modules
