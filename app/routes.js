@@ -1,4 +1,16 @@
-var Summoner = require('./models/summoner');
+var Summoner = require('./models/summoner'),
+    summonerController = require('./controllers/summoner'),
+    summonerMiddleware = require('./middleware/summoner');
+
+var initMiddleware = function (req, res, next) {
+    res.data = {};
+    res.dataSource = undefined;
+    return next();
+};
+
+var responseToJson = function (req, res, next) {
+    res.json(res.data);
+};
 
 module.exports = function(app) {
 
@@ -7,18 +19,13 @@ module.exports = function(app) {
     // authentication routes
 
     // sample api route
-    app.get('/api/summoner/:name', function(req, res, next) {
-        // use mongoose to get all nerds in the database
-        Summoner.find(function(err, nerds) {
-
-            // if there is an error retrieving, send the error.
-            // nothing after res.send(err) will execute
-            if (err)
-                res.send(err);
-
-            res.json(nerds); // return all nerds in JSON format
-        });
-    });
+    app.get('/api/summoner/:name',
+        initMiddleware,
+        summonerMiddleware.getSummonerInfo,
+        summonerController,
+        summonerMiddleware.save,
+        responseToJson
+    );
 
     // route to handle creating goes here (app.post)
     // route to handle delete goes here (app.delete)
