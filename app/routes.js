@@ -1,3 +1,11 @@
+//External Dependencies
+//var React = require('react'),
+//    ReactRouter = require('react-router'),
+//    match = ReactRouter.match,
+//    RouterContext = ReactRouter.RouterContext,
+//    ReactDOMServer = require('react-dom/server');
+
+
 var summonerController = require('./controllers/summoner'),
     summonerMiddleware = require('./middleware/summoner'),
 
@@ -23,7 +31,7 @@ var responseToJson = function (req, res, next) {
     res.json(res.data);
 };
 
-module.exports = function(app) {
+module.exports = function (app) {
 
     // server routes ===========================================================
     app.get('/api/summoner/:name',
@@ -58,8 +66,33 @@ module.exports = function(app) {
         responseToJson
     );
 
+
+    //app.use(function (req, res, next) {
+    //    console.log(FrondEndRoutes);
+    //    match({routes: FrondEndRoutes, location: req.url}, function (error, redirectLocation, renderProps){
+    //        if (error) {
+    //            res.status(500).send(error.message)
+    //        } else if (redirectLocation) {
+    //            res.redirect(302, redirectLocation.pathname + redirectLocation.search)
+    //        } else if (renderProps) {
+    //            // You can also check renderProps.components or renderProps.routes for
+    //            // your "not found" component or route respectively, and send a 404 as
+    //            // below, if you're using a catch-all route.
+    //            res.status(200).send(renderToString(React.createElement(RouterContext,renderProps)));
+    //        } else {
+    //            res.status(404).send('Not found')
+    //        }
+    //    });
+    //});
+
     // frontend routes =========================================================
     // route to handle all angular requests
+    //app.get('/', function (req, res) {
+    //    res.render('app', {
+    //        app: ReactDOMServer.renderToString(React.createElement(App))
+    //    });
+    //});
+
     app.get('*', function(req, res) {
         res.sendfile('./public/views/index.html');
     });

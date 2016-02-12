@@ -1,16 +1,21 @@
-require('es6-promise').polyfill();
+'use strict';
 var path = require('path');
 
 var autoprefixer = require('autoprefixer');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var baseConfig = {
+    evtool: "source-map",
     module: {
         loaders: [
             {
                 test: /\.jsx?$/,
-                exclude: /node_modules|static\/vendor/,
-                loader: 'babel-loader'
+                loader: 'babel-loader',
+                exclude: /node_modules/,
+                query:
+                {
+                    presets:['react','es2015']
+                }
             },
             {
                 id: 'sass-loader-config',
@@ -21,7 +26,7 @@ var baseConfig = {
     },
     entry: {
         app_style: './public/scss/app.scss',
-        home: './public/jsx/app.jsx'
+        app: './public/jsx/app.jsx'
     },
     output: {
         path: path.join(__dirname, 'public/dist'),
@@ -31,13 +36,10 @@ var baseConfig = {
         new ExtractTextPlugin('[name].css')
     ],
     postcss: [
-        autoprefixer({ browsers: ['> 3%', 'last 2 versions'] })
+        autoprefixer({browsers: ['> 3%', 'last 2 versions']})
     ],
     resolve: {
-        extensions: ['', '.js', '.jsx'],
-        alias: {
-            'vendor': path.join(__dirname, 'static/vendor')
-        }
+        extensions: ['', '.js', '.jsx']
     }
 };
 
