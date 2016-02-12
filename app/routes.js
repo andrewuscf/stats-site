@@ -4,8 +4,8 @@ var summonerController = require('./controllers/summoner'),
     summaryController = require('./controllers/summary'),
     summaryMiddleware = require('./middleware/summary'),
 
-    matchsController = require('./controllers/matchs'),
-    matchsMiddleware = require('./middleware/matchs');
+    matchListController = require('./controllers/matchList'),
+    matchListMiddleware = require('./middleware/matchList');
 
 
 
@@ -44,9 +44,9 @@ module.exports = function(app) {
 
     app.get('/api/matchs/:summonerId',
         initMiddleware,
-        matchsMiddleware.getInfo,
-        matchsController,
-        matchsMiddleware.save,
+        matchListMiddleware.getInfo,
+        matchListController,
+        matchListMiddleware.save,
         responseToJson
     );
 
