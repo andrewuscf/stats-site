@@ -1,17 +1,21 @@
 var request = require('request'),
-    Summoner = require('../models/summoner'),
+    Summary = require('../models/summary_stats'),
     Services = require('../services');
 
 
 module.exports.getInfo = function (req, res, next) {
 
-    Summoner.findOne({nameLowercase: req.params.name.toLowerCase()}, function (err, summoner) {
-        if (summoner) {
-            res.data = summoner;
+    Summary.findOne({
+        summonerId: parseInt(req.params.summonerId, 10),
+        region: req.query.region,
+        season: req.query.season
+    }, function (err, summary) {
+        if (summary) {
+            res.data = summary;
             res.dataSource = 'our';
             return next();
         } else {
-            var url = Services.summonerByName(req.query.region, req.params.name);
+            var url = Services.summaryBySummonerId(req.query.region, req.query.season, req.params.summonerId);
             request(url, function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     res.data = JSON.parse(body);
@@ -24,7 +28,7 @@ module.exports.getInfo = function (req, res, next) {
         }
     });
 };
-
+//
 //module.exports.renew = function (req, res, next) {
 //    if (req.query.renew === 'true') {
 //        var url = Services.summonerByName(req.query.region, req.params.name);
@@ -45,14 +49,15 @@ module.exports.save = function (req, res, next) {
         return next();
     }
 
-    Summoner.findOneAndUpdate({nameLowercase: req.params.name.toLowerCase()}, res.data, {
-        new: true,
-        upsert: true
-    }, function (err, summoner) {
+    Summary.findOneAndUpdate({
+        summonerId: parseInt(req.params.summonerId, 10),
+        region: req.query.region,
+        season: req.query.season
+    }, res.data, {new: true, upsert: true}, function (err, summary) {
         if (err) {
             return next();
         } else {
-            res.data = summoner;
+            res.data = summary;
             return next();
         }
     })

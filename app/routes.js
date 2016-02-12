@@ -1,6 +1,13 @@
-var Summoner = require('./models/summoner'),
-    summonerController = require('./controllers/summoner'),
-    summonerMiddleware = require('./middleware/summoner');
+var summonerController = require('./controllers/summoner'),
+    summonerMiddleware = require('./middleware/summoner'),
+
+    summaryController = require('./controllers/summary'),
+    summaryMiddleware = require('./middleware/summary'),
+
+    matchsController = require('./controllers/matchs'),
+    matchsMiddleware = require('./middleware/matchs');
+
+
 
 var initMiddleware = function (req, res, next) {
     res.data = {};
@@ -21,9 +28,25 @@ module.exports = function(app) {
     // sample api route
     app.get('/api/summoner/:name',
         initMiddleware,
-        summonerMiddleware.getSummonerInfo,
+        summonerMiddleware.getInfo,
         summonerController,
         summonerMiddleware.save,
+        responseToJson
+    );
+
+    app.get('/api/summary/:summonerId',
+        initMiddleware,
+        summaryMiddleware.getInfo,
+        summaryController,
+        summaryMiddleware.save,
+        responseToJson
+    );
+
+    app.get('/api/matchs/:summonerId',
+        initMiddleware,
+        matchsMiddleware.getInfo,
+        matchsController,
+        matchsMiddleware.save,
         responseToJson
     );
 

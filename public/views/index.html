@@ -9,8 +9,16 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script>
-        $.getJSON( "/api/summoner/CMxDisciple", {renew: 'true', region:'na'}, function( data ) {
-            console.log(data);
+        $.getJSON( "/api/summoner/CMxDisciple", {region:'na'}, function( data ) {
+            console.log(data.summonerId);
+
+            $.getJSON("/api/summary/"+ data.summonerId, {region:'na', season: 'SEASON2016'}).done(function (data) {
+                console.log('summary', data);
+            });
+
+            $.getJSON("/api/matchs/"+ data.summonerId, {region: 'na'}).done(function (data) {
+                console.log('match list: ', data);
+            })
         });
     </script>
 </body>
