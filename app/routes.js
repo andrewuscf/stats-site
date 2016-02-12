@@ -22,10 +22,6 @@ var responseToJson = function (req, res, next) {
 module.exports = function(app) {
 
     // server routes ===========================================================
-    // handle things like api calls
-    // authentication routes
-
-    // sample api route
     app.get('/api/summoner/:name',
         initMiddleware,
         summonerMiddleware.getInfo,
@@ -49,9 +45,6 @@ module.exports = function(app) {
         matchListMiddleware.save,
         responseToJson
     );
-
-    // route to handle creating goes here (app.post)
-    // route to handle delete goes here (app.delete)
 
     // frontend routes =========================================================
     // route to handle all angular requests
