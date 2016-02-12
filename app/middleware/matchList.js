@@ -1,11 +1,11 @@
 var request = require('request'),
-    Matchs = require('../models/matchList'),
+    MatchList = require('../models/matchList'),
     Services = require('../services');
 
 
 module.exports.getInfo = function (req, res, next) {
 
-    Matchs.findOne({summonerId: parseInt(req.params.summonerId, 10)}, function (err, matchList) {
+    MatchList.findOne({summonerId: parseInt(req.params.summonerId, 10)}, function (err, matchList) {
         if (matchList) {
             res.data = matchList;
             res.dataSource = 'our';
@@ -45,7 +45,7 @@ module.exports.save = function (req, res, next) {
         return next();
     }
 
-    Matchs.findOneAndUpdate({summonerId: parseInt(req.params.summonerId, 10)}, res.data, {
+    MatchList.findOneAndUpdate({summonerId: parseInt(req.params.summonerId, 10)}, res.data, {
         new: true,
         upsert: true
     }, function (err, matchs) {
