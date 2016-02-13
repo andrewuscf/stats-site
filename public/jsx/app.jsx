@@ -1,8 +1,10 @@
 'use strict';
 import React from 'react';
 import {render} from 'react-dom';
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 
+
+import Search from './components/SearchView';
 
 const App = React.createClass({
     //propTypes: {
@@ -13,14 +15,21 @@ const App = React.createClass({
     //},
 
     render() {
-        return (<div><h1>test</h1></div>);
+        return (
+            <div>
+
+                {this.props.children}
+            </div>
+        );
     }
 
 });
 
 const routes = (
     <Router history={browserHistory}>
-        <Route path="/" component={App} />
+        <Route path="/" component={App}>
+            <IndexRoute component={Search}/>
+        </Route>
     </Router>
 );
 

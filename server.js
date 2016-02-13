@@ -3,8 +3,7 @@ var express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
-    methodOverride = require('method-override'),
-    handlebars = require('express-handlebars');
+    methodOverride = require('method-override');
 
 // configuration ===========================================
 
@@ -23,8 +22,6 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 
 app.use('/static', express.static(__dirname + '/public'));
 
-app.engine('handlebars', handlebars({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
 
 // routes ==================================================
 require('./app/routes')(app); // configure our routes
