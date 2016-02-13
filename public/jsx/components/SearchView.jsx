@@ -9,7 +9,7 @@ const Search = React.createClass({
     getInitialState() {
         return {
             region: null,
-            summonerName: null
+            name: null
         }
     },
 
@@ -21,12 +21,14 @@ const Search = React.createClass({
 
     handleSummonerInput() {
         this.setState({
-            summonerName: this.refs.summonerName.value
+            name: this.refs.name.value
         });
     },
 
     handleSubmit() {
-        console.log(this.state);
+        if(this.state.region && this.state.name){
+
+        }
     },
 
     render() {
@@ -44,7 +46,7 @@ const Search = React.createClass({
                                 <input type="text"
                                        className="form-control"
                                        placeholder="Summoner Name"
-                                       ref="summonerName" onChange={this.handleSummonerInput}/>
+                                       ref="name" onChange={this.handleSummonerInput}/>
                             <span className="input-group-addon summoner-find-icon" onClick={this.handleSubmit}>
                                 <i className="glyphicon glyphicon-search"></i>
                             </span>
