@@ -17,7 +17,9 @@ var summonerController = require('./controllers/summoner'),
 
 
     matchController = require('./controllers/match'),
-    matchMiddleware = require('./middleware/match');
+    matchMiddleware = require('./middleware/match'),
+
+    regionMiddleware = require('./middleware/regions');
 
 
 
@@ -63,6 +65,12 @@ module.exports = function (app) {
         matchMiddleware.getInfo,
         matchController,
         matchMiddleware.save,
+        responseToJson
+    );
+
+    app.get('/api/regions',
+        initMiddleware,
+        regionMiddleware.getInfo,
         responseToJson
     );
 

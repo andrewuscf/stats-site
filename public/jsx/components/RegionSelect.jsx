@@ -1,20 +1,6 @@
 'use strict';
 import React from 'react';
 
-const regions = [
-    {region: 'na', title: 'North America'},
-    {region: 'br', title: 'Brazil'},
-    {region: 'eune', title: 'Europe Nordic & East'},
-    {region: 'euw', title: 'Europe West'},
-    {region: 'kr', title: 'Korea'},
-    {region: 'lan', title: 'LAN'},
-    {region: 'las', title: 'LAS'},
-    {region: 'oce', title: 'Oceania'},
-    {region: 'ru', title: 'Russia'},
-    {region: 'tr', title: 'Turkey'}
-];
-
-
 
 const RegionSelect = React.createClass({
     //propTypes: {
@@ -25,33 +11,47 @@ const RegionSelect = React.createClass({
     //},
     getInitialState() {
         return {
-            region: ''
+            region: 'Select Your Region',
+            regions: null
         }
     },
 
-    handleClick(region) {
-        console.log(region);
+    componentDidMount() {
+        $.get('/api/regions', function (result) {
+            this.setState({
+                regions: result
+            });
+        }.bind(this));
+    },
+
+    handleClick(region,title) {
+        this.props.handleClick(region);
+        console.log(region,title);
         this.setState({
-            region: region
+            region: title
         });
     },
 
     render() {
-        return (
-            <div className="dropdown">
-                <button className="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                    Dropdown
-                    <span className="caret"></span>
-                </button>
-                <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    {regions.map((region, title) =>
-                            <li key={region}>
-                                <a href='javascript:;' onClick={this.handleClick.bind(this, region)}>{title}</a>
-                            </li>
-                    )}
-                </ul>
-            </div>
-        );
+        if (this.state.regions) {
+            return (
+                <div className="dropdown">
+                    <button className="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                        {this.state.region}
+                        <span className="caret"></span>
+                    </button>
+                    <ul className="dropdown-menu">
+                        {this.state.regions.map((each) =>
+                                <li key={each.region}>
+                                    <a href='javascript:' onClick={this.handleClick.bind(this, each.region, each.title)}>{each.title}</a>
+                                </li>
+                        )}
+                    </ul>
+                </div>
+            );
+        } else {
+            return null;
+        }
     }
 
 });

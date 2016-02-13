@@ -12,10 +12,22 @@ const Search = React.createClass({
     //    pageCount: React.PropTypes.number.isRequired,
     //},
 
+    getInitialState() {
+        return {
+            region: null,
+        }
+    },
+
+    handleRegionChange(region){
+        this.setState({
+            region: region
+        });
+    },
+
     render() {
         return (
             <div>
-                <RegionSelect />
+                <RegionSelect handleClick={this.handleRegionChange} />
                 <h1>another</h1>
             </div>
         );

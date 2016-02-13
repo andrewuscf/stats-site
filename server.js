@@ -3,14 +3,17 @@ var express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
+    assert = require('assert'),
     methodOverride = require('method-override');
 
 // configuration ===========================================
 
-var db = require('./config/db');
-var port = process.env.PORT || 8080;
+var db = require('./config/db'),
+    populateDB = require('./config/populate_db'),
+    port = process.env.PORT || 8080;
 
 mongoose.connect(db.url);
+populateDB.loadRegions(mongoose);
 
 app.use(bodyParser.json());
 

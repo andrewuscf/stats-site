@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-module.exports = mongoose.model('Matchs', {
+module.exports = mongoose.model('MatchList', {
     matchId:    Number,
     summonerId: Number,
     region:     String,
