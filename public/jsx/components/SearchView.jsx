@@ -5,16 +5,11 @@ import RegionSelect from './RegionSelect';
 
 
 const Search = React.createClass({
-    //propTypes: {
-    //    currentPage: React.PropTypes.number.isRequired,
-    //    hasPrev: React.PropTypes.bool.isRequired,
-    //    hasNext: React.PropTypes.bool.isRequired,
-    //    pageCount: React.PropTypes.number.isRequired,
-    //},
 
     getInitialState() {
         return {
             region: null,
+            summonerName: null
         }
     },
 
@@ -24,11 +19,39 @@ const Search = React.createClass({
         });
     },
 
+    handleSummonerInput() {
+        this.setState({
+            summonerName: this.refs.summonerName.value
+        });
+    },
+
+    handleSubmit() {
+        console.log(this.state);
+    },
+
     render() {
         return (
-            <div>
-                <RegionSelect handleClick={this.handleRegionChange} />
-                <h1>another</h1>
+            <div className="search-view">
+                <div>
+                    <h1 className="text-center">League of Legends Stats</h1>
+
+                    <div className="col-sm-offset-2 row">
+                        <div className="col-sm-3">
+                            <RegionSelect handleClick={this.handleRegionChange}/>
+                        </div>
+                        <div className="col-sm-6">
+                            <div className="input-group">
+                                <input type="text"
+                                       className="form-control"
+                                       placeholder="Summoner Name"
+                                       ref="summonerName" onChange={this.handleSummonerInput}/>
+                            <span className="input-group-addon summoner-find-icon" onClick={this.handleSubmit}>
+                                <i className="glyphicon glyphicon-search"></i>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }

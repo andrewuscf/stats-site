@@ -3,12 +3,10 @@ import React from 'react';
 
 
 const RegionSelect = React.createClass({
-    //propTypes: {
-    //    currentPage: React.PropTypes.number.isRequired,
-    //    hasPrev: React.PropTypes.bool.isRequired,
-    //    hasNext: React.PropTypes.bool.isRequired,
-    //    pageCount: React.PropTypes.number.isRequired,
-    //},
+    propTypes: {
+        handleClick: React.PropTypes.func.isRequired
+    },
+
     getInitialState() {
         return {
             region: 'Select Your Region',
@@ -26,7 +24,6 @@ const RegionSelect = React.createClass({
 
     handleClick(region,title) {
         this.props.handleClick(region);
-        console.log(region,title);
         this.setState({
             region: title
         });
@@ -36,7 +33,7 @@ const RegionSelect = React.createClass({
         if (this.state.regions) {
             return (
                 <div className="dropdown">
-                    <button className="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                    <button className="btn btn-default dropdown-toggle search-dropdown" type="button" data-toggle="dropdown">
                         {this.state.region}
                         <span className="caret"></span>
                     </button>

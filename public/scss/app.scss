@@ -3,3 +3,16 @@
   height: 100%;
 }
 
+.search-view {
+  .summoner-find-icon {
+    cursor: pointer;
+  }
+}
+
+.search-dropdown{
+  width: 100%;
+  .caret {
+    float: right;
+    margin-top: 7px;
+  }
+}
