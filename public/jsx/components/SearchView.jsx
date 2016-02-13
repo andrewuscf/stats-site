@@ -1,6 +1,8 @@
 'use strict';
 import React from 'react';
 
+import RegionSelect from './RegionSelect';
+
 
 const Search = React.createClass({
     //propTypes: {
@@ -13,6 +15,7 @@ const Search = React.createClass({
     render() {
         return (
             <div>
+                <RegionSelect />
                 <h1>another</h1>
             </div>
         );
