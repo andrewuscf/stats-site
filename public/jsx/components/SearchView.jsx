@@ -1,10 +1,11 @@
 'use strict';
 import React from 'react';
+import { browserHistory } from 'react-router';
 
 import RegionSelect from './RegionSelect';
 
 
-const Search = React.createClass({
+const SearchView = React.createClass({
 
     getInitialState() {
         return {
@@ -27,7 +28,7 @@ const Search = React.createClass({
 
     handleSubmit() {
         if(this.state.region && this.state.name){
-
+            browserHistory.push(`/summoner/${this.state.region}/${this.state.name}`)
         }
     },
 
@@ -60,4 +61,4 @@ const Search = React.createClass({
 
 });
 
-module.exports = Search;
+module.exports = SearchView;

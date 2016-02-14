@@ -4,8 +4,8 @@ import {render} from 'react-dom';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 
 
-import Search from './components/SearchView';
-import Stats from './components/StatsView';
+import SearchView from './components/SearchView';
+import StatsView from './components/StatsView';
 
 const App = React.createClass({
 
@@ -22,8 +22,8 @@ const App = React.createClass({
 const routes = (
     <Router history={browserHistory}>
         <Route path="/" component={App}>
-            <IndexRoute component={Search}/>
-            <Route path="summoner/:name" component={Stats} />
+            <IndexRoute component={SearchView}/>
+            <Route path="summoner/:region/:name" component={StatsView} />
         </Route>
     </Router>
 );
