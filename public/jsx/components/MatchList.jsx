@@ -56,9 +56,29 @@ const MatchList = React.createClass({
                     <p>Mid: <span>{this.state.data.lane.MID}</span></p>
 
                     <p>Jungle: <span>{this.state.data.lane.JUNGLE}</span></p>
-                    <ul class="list-inline text-center">
                         {shownMatches}
-                    </ul>
+                    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th>Player</th>
+                            <th>Position</th>
+                            <th>Office</th>
+                            <th>Age</th>
+                            <th>Start date</th>
+                            <th>Salary</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Tiger Nixon</td>
+                            <td>System Architect</td>
+                            <td>Edinburgh</td>
+                            <td>61</td>
+                            <td>2011/04/25</td>
+                            <td>$320,800</td>
+                        </tr>
+                        </tbody>
+                    </table>
                     <button className="btn btn-success" onClick={this.handleShowMore}>Add</button>
                 </div>
             );
