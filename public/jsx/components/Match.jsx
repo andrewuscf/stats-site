@@ -29,13 +29,14 @@ const Match = React.createClass({
         const match = this.state.match;
         if(match){
             return (
-                <li>
-                    <h5 class="clear-fix">
-                        <span class="text-success">{match.matchMode}</span>
-                        <span class="text-danger">d</span>
-                        <span class="text-info">ds</span>
-                    </h5>
-                </li>
+                <tr>
+                    <td>Tiger Nixon</td>
+                    <td>{match.matchMode}</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>$320,800</td>
+                </tr>
             );
         } else {
             return null;
