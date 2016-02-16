@@ -14,6 +14,7 @@ var db = require('./config/db'),
 
 mongoose.connect(db.url);
 populateDB.loadRegions(mongoose);
+populateDB.loadChampions(mongoose)
 
 app.use(bodyParser.json());
 

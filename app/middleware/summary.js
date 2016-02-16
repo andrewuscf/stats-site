@@ -15,7 +15,7 @@ module.exports.getInfo = function (req, res, next) {
             res.dataSource = 'our';
             return next();
         } else {
-            var url = Services.summaryBySummonerId(req.query.region, req.query.season, req.params.summonerId);
+            var url = Services.summaryBySummonerId(req.query.region, req.params.summonerId);
             request(url, function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     res.data = JSON.parse(body);

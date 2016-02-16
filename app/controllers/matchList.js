@@ -7,8 +7,6 @@ module.exports = function (req, res, next) {
             JUNGLE: 0
         };
 
-        console.log(res.data);
-
         for (var i = 0; i < res.data.matches.length; i++) {
             lane[res.data.matches[i].lane] += 1
         }

@@ -8,25 +8,25 @@ module.exports.getInfo = function (req, res, next) {
         return next()
     }
 
-    Match.findOne({matchId: parseInt(req.params.matchId, 10)}, function (err, match) {
-        if (match) {
-            res.data = match;
-            res.dataSource = 'our';
-            return next()
-        } else {
+    //Match.findOne({matchId: parseInt(req.params.matchId, 10)}, function (err, match) {
+    //    if (match) {
+    //        res.data = match;
+    //        res.dataSource = 'our';
+    //        return next()
+    //    } else {
             var url = Services.matchById(req.query.region, req.params.matchId);
 
             request(url, function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     res.data = JSON.parse(body);
-                    res.dataSource = 'riot'
+                    res.dataSource = 'riot';
                 } else {
                     res.data = undefined;
                 }
                 return next()
             });
-        }
-    });
+        //}
+    //});
 
 };
 

@@ -45,7 +45,8 @@ const MatchList = React.createClass({
             for (var x = 0; x < this.state.displayedMatches; x++) {
                 shownMatches.push(<Match key={matches[x].matchId}
                                          matchId={matches[x].matchId}
-                                         region={this.props.region}/>)
+                                         region={this.props.region}
+                                         summonerId={this.props.summonerId}/>)
             }
             return (
                 <div className="match-list">
@@ -56,29 +57,10 @@ const MatchList = React.createClass({
                     <p>Mid: <span>{this.state.data.lane.MID}</span></p>
 
                     <p>Jungle: <span>{this.state.data.lane.JUNGLE}</span></p>
-                        {shownMatches}
-                    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                        <thead>
-                        <tr>
-                            <th>Player</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>$320,800</td>
-                        </tr>
-                        </tbody>
-                    </table>
+
+                    <hr/>
+
+                    {shownMatches}
                     <button className="btn btn-success" onClick={this.handleShowMore}>Add</button>
                 </div>
             );

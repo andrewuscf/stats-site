@@ -1,11 +1,3 @@
-//External Dependencies
-//var React = require('react'),
-//    ReactRouter = require('react-router'),
-//    match = ReactRouter.match,
-//    RouterContext = ReactRouter.RouterContext,
-//    ReactDOMServer = require('react-dom/server');
-
-
 var summonerController = require('./controllers/summoner'),
     summonerMiddleware = require('./middleware/summoner'),
 
@@ -19,8 +11,8 @@ var summonerController = require('./controllers/summoner'),
     matchController = require('./controllers/match'),
     matchMiddleware = require('./middleware/match'),
 
-    regionMiddleware = require('./middleware/regions');
-
+    regionMiddleware = require('./middleware/regions'),
+    championMiddleware = require('./middleware/champion');
 
 
 var initMiddleware = function (req, res, next) {
@@ -74,34 +66,14 @@ module.exports = function (app) {
         responseToJson
     );
 
+    app.get('/api/champion/:championId',
+        initMiddleware,
+        championMiddleware.getInfo,
+        responseToJson
+    );
 
-    //app.use(function (req, res, next) {
-    //    console.log(FrondEndRoutes);
-    //    match({routes: FrondEndRoutes, location: req.url}, function (error, redirectLocation, renderProps){
-    //        if (error) {
-    //            res.status(500).send(error.message)
-    //        } else if (redirectLocation) {
-    //            res.redirect(302, redirectLocation.pathname + redirectLocation.search)
-    //        } else if (renderProps) {
-    //            // You can also check renderProps.components or renderProps.routes for
-    //            // your "not found" component or route respectively, and send a 404 as
-    //            // below, if you're using a catch-all route.
-    //            res.status(200).send(renderToString(React.createElement(RouterContext,renderProps)));
-    //        } else {
-    //            res.status(404).send('Not found')
-    //        }
-    //    });
-    //});
 
-    // frontend routes =========================================================
-    // route to handle all angular requests
-    //app.get('/', function (req, res) {
-    //    res.render('app', {
-    //        app: ReactDOMServer.renderToString(React.createElement(App))
-    //    });
-    //});
-
-    app.get('*', function(req, res) {
+    app.get('*', function (req, res) {
         res.sendfile('./public/views/index.html');
     });
 
