@@ -1,0 +1,37 @@
+#main {
+  width: 100%;
+  height: 100%; }
+
+.search-view .summoner-find-icon {
+  cursor: pointer; }
+
+.search-view .search-title {
+  padding-top: 80px;
+  padding-bottom: 80px; }
+
+.search-view .search-dropdown {
+  width: 100%; }
+  .search-view .search-dropdown .caret {
+    float: right;
+    margin-top: 7px; }
+
+.stats-view {
+  padding-bottom: 30px; }
+  .stats-view .level-text {
+    color: green; }
+  .stats-view .game-stats-box {
+    padding-top: 0; }
+  .stats-view .kda-box {
+    padding-top: 20px; }
+  .stats-view .item-six {
+    margin-top: 25px; }
+  .stats-view .lane-spacing {
+    padding-left: 15px; }
+  @media (max-width: 991px) {
+    .stats-view .match-items {
+      padding-top: 15px; } }
+  .stats-view .no-wrap {
+    white-space: nowrap; }
+  @media (max-width: 767px) {
+    .stats-view .xs-no-padding {
+      padding: 0; } }
