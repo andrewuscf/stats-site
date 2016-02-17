@@ -10,7 +10,8 @@ const SearchView = React.createClass({
     getInitialState() {
         return {
             region: null,
-            name: null
+            name: null,
+            errors: null
         }
     },
 
@@ -27,8 +28,17 @@ const SearchView = React.createClass({
     },
 
     handleSubmit() {
-        if(this.state.region && this.state.name){
+        var self = this;
+        if (this.state.region && this.state.name) {
             browserHistory.push(`/summoner/${this.state.region}/${this.state.name}`)
+        } else if (!this.state.region) {
+            self.setState({
+                errors: 'Please select a Region'
+            });
+        } else if (!this.state.name) {
+            self.setState({
+                errors: 'Please enter your Summoner Name'
+            });
         }
     },
 
@@ -37,6 +47,11 @@ const SearchView = React.createClass({
             <div className="search-view">
                 <div>
                     <h1 className="search-title text-center">League of Legends Stats</h1>
+
+                    {(this.state.errors) ?
+                        <p className="alert-danger text-center">{this.state.errors}</p>
+                        : null
+                    }
 
                     <div className="col-sm-offset-2 row">
                         <div className="col-sm-3">
