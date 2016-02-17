@@ -9,7 +9,7 @@
   }
 }
 
-.search-dropdown{
+.search-dropdown {
   width: 100%;
   .caret {
     float: right;
@@ -17,6 +17,42 @@
   }
 }
 
-.game-stats-box {
-  padding-top: 0;
+.stats-view {
+  padding-bottom: 30px;
+
+  .level-text {
+    color: green;
+  }
+
+  .game-stats-box {
+    padding-top: 0;
+  }
+
+  .kda-box {
+    padding-top: 20px;
+  }
+
+  .item-six {
+    margin-top: 25px;
+  }
+
+  .lane-spacing {
+    padding-left: 15px;
+  }
+
+  .match-items {
+    @media (max-width: 991px) {
+      padding-top: 15px;
+    }
+  }
+
+  .no-wrap {
+    white-space: nowrap;
+  }
+
+  .xs-no-padding {
+    @media (max-width: 767px) {
+      padding: 0;
+    }
+  }
 }

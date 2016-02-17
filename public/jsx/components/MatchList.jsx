@@ -50,18 +50,22 @@ const MatchList = React.createClass({
             }
             return (
                 <div className="match-list">
-                    <p>Top: <span>{this.state.data.lane.TOP}</span></p>
+                    <h3>Total Game Stats:</h3>
+                    <hr/>
+                    <span>Top: {this.state.data.lane.TOP}</span>
 
-                    <p>Bottom: <span>{this.state.data.lane.BOTTOM}</span></p>
+                    <span className="lane-spacing">Bottom: {this.state.data.lane.BOTTOM}</span>
 
-                    <p>Mid: <span>{this.state.data.lane.MID}</span></p>
+                    <span className="lane-spacing">Mid: {this.state.data.lane.MID}</span>
 
-                    <p>Jungle: <span>{this.state.data.lane.JUNGLE}</span></p>
+                    <span className="lane-spacing">Jungle: {this.state.data.lane.JUNGLE}</span>
+
+                    <span className="lane-spacing">= {this.state.data.totalGames} Total Games</span>
 
                     <hr/>
-
+                    <h3>Recent Ranked Games:</h3>
                     {shownMatches}
-                    <button className="btn btn-success" onClick={this.handleShowMore}>Add</button>
+                    <button className="btn btn-success pull-right" onClick={this.handleShowMore}>Show More +</button>
                 </div>
             );
         } else {

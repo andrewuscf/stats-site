@@ -28,10 +28,10 @@ const StatsView = React.createClass({
     render() {
         if(this.state.summoner){
             return (
-                <div className="stats-view">
+                <div className="col-xs-12 stats-view">
                     <h1>{this.state.summoner.name}</h1>
+                    <p className="level-text">Level : {this.state.summoner.summonerLevel}</p>
                     <img src={toProfileIcon(this.state.summoner.profileIconId)} alt="" />
-                    <h3>Ranked</h3>
                     <MatchList summonerId={this.state.summoner.summonerId} region={this.props.params.region}/>
                 </div>
             );
