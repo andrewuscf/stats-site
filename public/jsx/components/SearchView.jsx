@@ -36,7 +36,7 @@ const SearchView = React.createClass({
         return (
             <div className="search-view">
                 <div>
-                    <h1 className="text-center">League of Legends Stats</h1>
+                    <h1 className="search-title text-center">League of Legends Stats</h1>
 
                     <div className="col-sm-offset-2 row">
                         <div className="col-sm-3">

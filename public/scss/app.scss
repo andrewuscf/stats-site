@@ -7,13 +7,18 @@
   .summoner-find-icon {
     cursor: pointer;
   }
-}
 
-.search-dropdown {
-  width: 100%;
-  .caret {
-    float: right;
-    margin-top: 7px;
+  .search-title {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .search-dropdown {
+    width: 100%;
+    .caret {
+      float: right;
+      margin-top: 7px;
+    }
   }
 }
 
