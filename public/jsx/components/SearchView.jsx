@@ -54,10 +54,10 @@ const SearchView = React.createClass({
                     }
 
                     <div className="col-sm-offset-2 row">
-                        <div className="col-sm-3">
+                        <div className="col-xs-12 col-sm-3">
                             <RegionSelect handleClick={this.handleRegionChange}/>
                         </div>
-                        <div className="col-sm-6">
+                        <div className="col-xs-12 col-sm-6">
                             <div className="input-group">
                                 <input type="text"
                                        className="form-control"
